@@ -14,9 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -31,52 +29,45 @@
   <packaging>maven-plugin</packaging>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mavenVersion>3.9.4</mavenVersion>
-    <mavenPluginPluginVersion>3.9.0</mavenPluginPluginVersion>
-    <version.surefire.plugin>2.22.0</version.surefire.plugin>
-
-    <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <mavenPluginPluginVersion>3.9.0</mavenPluginPluginVersion>
+    <mavenVersion>3.9.4</mavenVersion>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.surefire.plugin>2.22.0</version.surefire.plugin>
   </properties>
 
   <dependencies>
-
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>${mavenVersion}</version>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
       <version>${mavenVersion}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
       <version>${mavenVersion}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-model-builder</artifactId>
       <version>${mavenVersion}</version>
       <scope>provided</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${mavenVersion}</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
       <version>${mavenPluginPluginVersion}</version>
       <scope>provided</scope>
     </dependency>
-
     <!-- Test dependencies -->
     <dependency>
       <groupId>junit</groupId>
@@ -90,24 +81,9 @@
       <version>1.10.19</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${version.surefire.plugin}</version>
-        <configuration>
-          <forkCount>3</forkCount>
-          <reuseForks>true</reuseForks>
-          <!-- Workaround for Java8 Surefire Issue: The forked VM terminated without properly saying goodbye. VM crash -->
-          <argLine>-Xmx1024m -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-        </configuration>
-      </plugin>
-    </plugins>
-
     <pluginManagement>
       <plugins>
         <plugin>
@@ -120,15 +96,58 @@
           <executions>
             <execution>
               <id>mojo-descriptor</id>
-              <phase>process-classes</phase>
               <goals>
                 <goal>descriptor</goal>
               </goals>
+              <phase>process-classes</phase>
             </execution>
           </executions>
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>2.30.0</version>
+        <configuration>
+          <formats>
+            <format>
+              <includes>
+                <include>*.md</include>
+                <include>.gitignore</include>
+              </includes>
+              <!-- define the steps to apply to those files -->
+              <trimTrailingWhitespace/>
+              <endWithNewline/>
+              <indent>
+                <tabs>true</tabs>
+                <spacesPerTab>4</spacesPerTab>
+              </indent>
+            </format>
+          </formats>
+          <!-- define a language-specific format -->
+          <java>
+            <eclipse/>
+            <importOrder>
+              <order>java,javax,org,com</order>
+            </importOrder>
+            <removeUnusedImports/>
+          </java>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${version.surefire.plugin}</version>
+        <configuration>
+          <forkCount>3</forkCount>
+          <reuseForks>true</reuseForks>
+          <!-- Workaround for Java8 Surefire Issue: The forked VM terminated without properly saying goodbye. VM crash -->
+          <argLine>-Xmx1024m -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
@@ -170,4 +189,3 @@
     </profile>
   </profiles>
 </project>
-
