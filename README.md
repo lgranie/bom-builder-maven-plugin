@@ -54,8 +54,7 @@ Config Parameters
 | bomDescription                      | The description to set in the generated BOM                               |
 | exclusions                          | A list of exclusions to set in the generated BOM                          |
 | dependencyExclusions                | A list of dependencies which should not be included in the generated BOM  |
-| useArtifacts                        | Use all dependencies and transitive dependencies (default: true)          |
-| useDependencies                     | Use only defined dependencies (default: false)                            |
+| useDependencies                     | Use only defined dependencies (default: true)                            |
 | useDependencyManagementDependencies | Use dependency management dependencies (default: false)                   |
 
 Each exclusion should contain four parameters:

@@ -65,8 +65,8 @@ public class BuildBomMojo extends AbstractMojo {
 	/**
 	 * BOM name
 	 */
-	@Parameter(property = "addVersionProperties")
-	boolean addVersionProperties;
+	@Parameter(defaultValue = "false", property = "addVersionProperties")
+	private boolean addVersionProperties;
 
 	/**
 	 * BOM description
@@ -78,7 +78,7 @@ public class BuildBomMojo extends AbstractMojo {
 	 * BOM output file
 	 */
 	@Parameter(defaultValue = "bom-pom.xml", property = "outputFilename")
-	String outputFilename;
+	private String outputFilename;
 
 	/**
 	 * Whether the BOM should include the dependency exclusions that are present in
@@ -96,26 +96,26 @@ public class BuildBomMojo extends AbstractMojo {
 	/**
 	 * Whether use properties to specify dependency versions in BOM
 	 */
-	@Parameter
-	boolean usePropertiesForVersion;
+	@Parameter(defaultValue = "false", property = "usePropertiesForVersion")
+	private boolean usePropertiesForVersion;
 
 	/**
 	 * Whether to use dependency management dependencies.
 	 */
 	@Parameter(defaultValue = "false", property = "useDependencyManagementDependencies")
-	boolean useDependencyManagementDependencies;
+	private boolean useDependencyManagementDependencies;
 
 	/**
 	 * Wheter to use dependencies.
 	 */
-	@Parameter(defaultValue = "false", property = "useDependencies")
-	boolean useDependencies;
+	@Parameter(defaultValue = "true", property = "useDependencies")
+	private boolean useDependencies;
 
 	/**
 	 * Wheter to use all resolved dependencies (defaults to true).
 	 */
-	@Parameter(defaultValue = "false", property = "useAllResolvedDependencies")
-	boolean useAllResolvedDependencies = true;
+	@Parameter(defaultValue = "true", property = "useAllResolvedDependencies")
+	private boolean useAllResolvedDependencies;
 
 	/**
 	 * The current project
