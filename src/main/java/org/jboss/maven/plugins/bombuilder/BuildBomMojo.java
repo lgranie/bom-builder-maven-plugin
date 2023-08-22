@@ -41,43 +41,43 @@ public class BuildBomMojo
     /**
      * BOM groupId
      */
-    @Parameter( required = true )
+    @Parameter( defaultValue = "your-group-id", property = "bomGroupId" )
     private String bomGroupId;
 
     /**
      * BOM artifactId
      */
-    @Parameter( required = true )
+    @Parameter( defaultValue = "artifact-bom", property = "bomArtifactId" )
     private String bomArtifactId;
 
     /**
      * BOM version
      */
-    @Parameter( required = true )
+    @Parameter( defaultValue = "1.0.0-SNAPSHOT", property = "bomVersion" )
     private String bomVersion;
 
     /**
      * BOM name
      */
-    @Parameter( defaultValue = "" )
+    @Parameter( defaultValue = "", property = "bomName" )
     private String bomName;
 
     /**
      * BOM name
      */
-    @Parameter
+    @Parameter(property = "addVersionProperties" )
     private boolean addVersionProperties;
 
    /**
      * BOM description
      */
-    @Parameter( defaultValue = "" )
+    @Parameter( defaultValue = "", property = "bomDescription" )
     private String bomDescription;
 
     /**
      * BOM output file
      */
-    @Parameter( defaultValue = "bom-pom.xml" )
+    @Parameter( defaultValue = "bom-pom.xml", property = "outputFilename" )
     String outputFilename;
 
     /**

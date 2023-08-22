@@ -1,3 +1,6 @@
+[![](https://jitpack.io/v/dperezcabrera/bom-builder-maven-plugin.svg)](https://jitpack.io/#dperezcabrera/bom-builder-maven-plugin)
+[![Download](https://api.bintray.com/packages/dperezcabrera/public/bom-builder-maven-plugin/images/download.svg) ](https://bintray.com/dperezcabrera/public/bom-builder-maven-plugin/_latestVersion)
+
 bom-builder-maven-plugin
 ========================
 
@@ -14,9 +17,9 @@ The plugin is configured in the "plugins" section of the pom.
 
     <plugins>
       <plugin>
-        <groupId>org.jboss.maven.plugins</groupId>
+        <groupId>com.github.dperezcabrera</groupId>
         <artifactId>bom-builder-maven-plugin</artifactId>
-        <version>1.0.0.Beta3</version>
+        <version>1.2.1</version>
         <executions>
           <execution>
             <id>build-bom</id>
@@ -35,6 +38,12 @@ The plugin is configured in the "plugins" section of the pom.
       </plugin>
     </plugins>
 
+
+With no configuration usage
+---------------------------
+Example without configuration:
+
+    mvn com.github.dperezcabrera:bom-builder-maven-plugin:1.2.1:build-bom [-DbomGroupId=your-group] [-DbomArtifactId=your-artifact] [-DbomVersion=0.0.1]
 
 Config Parameters
 -----------------
