@@ -1,11 +1,8 @@
-[![](https://jitpack.io/v/dperezcabrera/bom-builder-maven-plugin.svg)](https://jitpack.io/#dperezcabrera/bom-builder-maven-plugin)
-[![Download](https://api.bintray.com/packages/dperezcabrera/public/bom-builder-maven-plugin/images/download.svg) ](https://bintray.com/dperezcabrera/public/bom-builder-maven-plugin/_latestVersion)
-
 bom-builder-maven-plugin
 ========================
 
-A Maven plugin to generate a dependency management POM, sometimes called a 
-BOM or bill of materials POM.  The plugin reads the set of dependencies in 
+A Maven plugin to generate a dependency management POM, sometimes called a
+BOM or bill of materials POM.  The plugin reads the set of dependencies in
 the current project, and writes a new POM to "target/bom-pom.xml" which
 contains a dependency management section listing the dependencies of
 the current project.
@@ -43,7 +40,7 @@ With no configuration usage
 ---------------------------
 Example without configuration:
 
-    mvn com.github.dperezcabrera:bom-builder-maven-plugin:1.2.1:build-bom [-DbomGroupId=your-group] [-DbomArtifactId=your-artifact] [-DbomVersion=0.0.1]
+	mvn com.github.lgranie:bom-builder-maven-plugin:1.0.0-SNAPSHOT:build-bom [-DbomGroupId=your-group] [-DbomArtifactId=your-artifact] [-DbomVersion=0.0.1]
 
 Config Parameters
 -----------------
@@ -55,8 +52,8 @@ Config Parameters
 | bomVersion                          | The version to set in the generated BOM                                   |
 | bomName                             | The name to set in the generated BOM                                      |
 | bomDescription                      | The description to set in the generated BOM                               |
-| exclusions                          | A list of exclusions to set in the genertated BOM                         |
-| dependencyExclusions                | A list of dependencies which should not be included in the genertated BOM |
+| exclusions                          | A list of exclusions to set in the generated BOM                          |
+| dependencyExclusions                | A list of dependencies which should not be included in the generated BOM  |
 | useArtifacts                        | Use all dependencies and transitive dependencies (default: true)          |
 | useDependencies                     | Use only defined dependencies (default: false)                            |
 | useDependencyManagementDependencies | Use dependency management dependencies (default: false)                   |
